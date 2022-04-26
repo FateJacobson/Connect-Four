@@ -2,6 +2,12 @@ FROM python:2.7
 
 ADD connect_four.py .
 
+ADD test.py .
+
 RUN apt update
 
-CMD [ "python", "./connect_four.py" ]
+RUN apt-get -y install python-pip
+
+RUN pip install coverage
+
+CMD [ "coverage", "run", "./test.py" ]
