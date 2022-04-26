@@ -30,7 +30,7 @@ class Game(object):
         self.board = Board()
 
     def has_winner(self, player):
-        # Check horizontal locations for win
+        # Check horizontal locations for wincl
         for c in range(4):
             for r in range(6):
                 if self.board.playfield[r][c] == player and self.board.playfield[r][c+1] == player and self.board.playfield[r][c+2] == player and self.board.playfield[r][c+3] == player:
