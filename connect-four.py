@@ -2,7 +2,7 @@
 #made by Fate Jacobson
 
 
-class board():
+class Board():
     def __init__(self):
         self.playfield = [[0 for i in range(7)] for j in range(6)]
         self.columns = [0 for i in range(7)] 
@@ -22,12 +22,66 @@ class board():
         if self.columnTracker[column] > 0:
             self.columnTracker[column] -= 1
             self.playfield[self.columnTracker[column]][column] = player
+        else:
+            return False
+
+class Game(object):
+    def __init__(self):
+        self.board = Board()
+
+    def has_winner(self, player):
+        # Check horizontal locations for win
+        for c in range(4):
+            for r in range(6):
+                if self.board.playfield[r][c] == player and self.board.playfield[r][c+1] == player and self.board.playfield[r][c+2] == player and self.board.playfield[r][c+3] == player:
+                    return True
+
+        # Check vertical locations for win
+        for c in range(7):
+            for r in range(3):
+                if self.board.playfield[r][c] == player and self.board.playfield[r+1][c] == player and self.board.playfield[r+2][c] == player and self.board.playfield[r+3][c] == player:
+                    return True
+
+        # Check positively sloped diaganols
+        for c in range(4):
+            for r in range(3):
+                if self.board.playfield[r][c] == player and self.board.playfield[r+1][c+1] == player and self.board.playfield[r+2][c+2] == player and self.board.playfield[r+3][c+3] == player:
+                    return True
+
+        # Check negatively sloped diaganols
+        for c in range(4):
+            for r in range(3, 6):
+                if self.board.playfield[r][c] == player and self.board.playfield[r-1][c+1] == player and self.board.playfield[r-2][c+2] == player and self.board.playfield[r-3][c+3] == player:
+                    return True
+        
+        return False
+
+    def play_game(self):
+        self.winner = 0
+        self.player = 1
+        self.board.display_board()
+        while (self.has_winner(1) == False and self.has_winner(2) == False):
+            userInput = input("Player (" + str(self.player) + "), enter column: ")
+            if userInput < 7 and userInput > 0:
+                if self.board.mark_board(userInput, self.player) == False:
+                    print("Column is full")
+                else:
+                    if self.player == 1:
+                        self.player = 2
+                    else:
+                        self.player = 1
+            else:
+                print("Invalid column")
+            self.board.display_board()
+        if self.has_winner(1) == True:
+            self.winner = 1
+        else:
+            self.winner = 2
+        return self.winner
 
 if __name__ == '__main__':
-    board = board()
-    board.mark_board(1, 1)
-    board.mark_board(1, 2)
-    board.mark_board(1, 1)
-    board.mark_board(1, 2)
-    board.display_board()
+    game = Game()
+    winner = game.play_game()
+    print("Player " + str(winner) + " Has Won!")
+    
     
