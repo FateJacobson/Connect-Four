@@ -38,7 +38,7 @@ To play connect four, simply enter the following command.
 
 $ Python connect_four.py
 
-### Run Test and View Coverage
+### Run Tests and View Coverage
 
 To run the automated tests, enter the following command.
 
