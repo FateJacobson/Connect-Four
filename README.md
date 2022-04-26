@@ -20,7 +20,7 @@ First, install Docker Desktop.
 
 Installation link: https://www.docker.com/products/docker-desktop/
 
-### Run Commands
+### Build Docker Container 
 
 Once installed, run the following commands in the command line to create and run a container.
 
