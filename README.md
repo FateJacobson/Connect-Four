@@ -18,6 +18,10 @@ Github
 
 Github Actions
 
+### Testing and Coverage
+
+unittest and coverage.py
+
 ### Packaging
 
 Docker
