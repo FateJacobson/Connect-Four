@@ -1,5 +1,5 @@
 #simple connect four game 
-#made by Fate Jacobson
+#made by Fate Jacobson!
 #python2
 
 
